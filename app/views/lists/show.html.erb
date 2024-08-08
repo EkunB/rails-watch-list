@@ -1,0 +1,48 @@
+<h1 class="mb-md-5"><%= @list.name %></h1>
+
+<ul class="list-unstyled">
+  <% @movies.each do |movie| %>
+    <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+    <li>
+      <div class="container position-relative hero-header hero-header-sm mb-4 ">
+        <div class="position-absolute z-0 hero-picture hero-picture-overlay rounded-2 overflow-hidden w-100 h-100">
+          <div class="ratio ratio-16x9 w-100 h-100">
+              <%= image_tag movie.poster_url %>
+          </div>
+        </div>
+        <div class="position-relative container h-100 z-1">
+          <div class="row h-100 p-4 px-xl-80 pt-xl-80 pb-xl-80">
+            <div class="col-12 col-lg-12 col-xl-7">
+              <div class="position-relative pe-20px">
+                <h2 class="main-title hero-main-title fs-60 fw-500 text-white mt-4 mt-lg-0 mb-3 mw-100 mw-md-75 mw-xl-100" style="color: rgb(255, 255, 255)"><%= movie.title %></h2>
+
+                <p class="main-subtitle text-white mw-75 mb-3"><%= movie.overview %></p>
+
+                <p class="main-subtitle text-white mw-75 mb-3"><%= movie.rating %></p>
+
+                <p class="main-subtitle text-white mw-75 mb-3"><%= bookmark.comment %></p>
+
+                <div class="mt-mb-md-4">
+                  <%= link_to "Delete this movie", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Do you really want to delete this movie from the list ?" }, class:"btn btn-danger" %>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-12 col-xl-5"></div>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<div class="mt-md-4">
+  <%= link_to "Add a movie", new_list_bookmark_path(@list), class:"btn btn-success" %>
+</div>
+
+<div class="mt-md-4">
+  <%= link_to "Back to watch list", lists_path, class:"btn btn-primary" %>
+</div>
+
+<div class="mt-md-4">
+  <%= button_to "Delete this watch list", @lists, method: :delete, class:"btn btn-danger" %>
+</div>

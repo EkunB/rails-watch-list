@@ -1,0 +1,11 @@
+<h1 class="mb-md-5">Movies' Watch List</h1>
+
+<ul class="list-unstyled">
+  <% @lists.each do |list| %>
+    <li><%= link_to list.name, list_path(list), class:'btn btn-light text-decoration-none' %></li>
+  <% end %>
+</ul>
+
+<div class="mt-md-4">
+  <%= link_to "Create a new list", new_list_path, class:"btn btn-primary" %>
+</div>

@@ -1,0 +1,13 @@
+<h1 class="mb-md-5">Create your list</h1>
+
+<div>
+  <%= simple_form_for(@list) do |f| %>
+    <%= f.input :name, label:"List's name" %>
+
+    <%= f.submit 'Create list', class:'btn btn-success'%>
+  <% end %>
+</div>
+
+<div class="mt-md-4">
+  <%= link_to "Back to watch list", lists_path, class:"btn btn-primary" %>
+</div>
